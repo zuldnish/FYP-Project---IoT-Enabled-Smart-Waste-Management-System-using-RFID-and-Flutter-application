@@ -2,14 +2,10 @@
 ### For Reducing Waste in Residential Buildings
 
 > A Final Year Project integrating **ESP32**, **RFID**, **ultrasonic & gas sensors**, **Firebase**, and a **Flutter mobile app** to automate waste monitoring and accountability in residential buildings.
-![Prototype](Image/Prototype.jpg)
-![Physical Wiring](Image/Physical%20Wiring.jpg)
 
----
-
-<!-- 📸 IMAGE SUGGESTION #1: Hero banner or system overview photo -->
-<!-- Recommended: A wide photo of the full assembled smart bin prototype (ESP32 wired up with sensors visible) -->
-<!-- Placement: Right below the title block, before the Table of Contents -->
+<p align="center">
+  <img src="Image/Prototype.jpg" alt="Smart Bin Prototype" width="600"/>
+</p>
 
 ---
 
@@ -42,9 +38,9 @@ Residential buildings in Malaysia lack structured systems for organic waste trac
 
 ## System Architecture
 
-<!-- 📸 IMAGE SUGGESTION #2: System Architecture Diagram -->
-<!-- Recommended: A block diagram showing the flow: RFID → ESP32 → WiFi → Firebase (RTDB + Firestore) → Flutter App -->
-<!-- You can draw this in draw.io, Canva, or Lucidchart and export as a PNG -->
+<p align="center">
+  <img src="Image/Block%20diagram.png" alt="System Block Diagram" width="700"/>
+</p>
 
 ```
 [RFID Card Scan]
@@ -80,9 +76,12 @@ Residential buildings in Malaysia lack structured systems for organic waste trac
 | MQ-135 Gas Sensor | Monitors gas/air quality near the bin (pin 36) |
 | RFID Cards/Tags | One per resident — used for identity verification before disposal |
 
-<!-- 📸 IMAGE SUGGESTION #3: Hardware wiring/breadboard photo -->
-<!-- Recommended: A labeled close-up photo of the ESP32 wired to the PN532, ultrasonic sensor, and MQ-135 on a breadboard or PCB -->
-<!-- Label each component clearly if possible -->
+<p align="center">
+  <img src="Image/Physical%20Wiring.jpg" alt="Physical Wiring" width="45%"/>
+  &nbsp;&nbsp;
+  <img src="Image/Schematic%20diagram.png" alt="Schematic Diagram" width="45%"/>
+</p>
+<p align="center"><em>Left: Physical wiring &nbsp;|&nbsp; Right: Schematic diagram</em></p>
 
 **Pin Summary:**
 
@@ -132,15 +131,16 @@ Residential buildings in Malaysia lack structured systems for organic waste trac
 - A **circular buffer of 10 samples** is averaged to smooth the value
 - The average is mapped to a PPM range (0–2000) and pushed to **Firestore**
 
-<!-- 📸 IMAGE SUGGESTION #4: Flowchart of the double-scan disposal process -->
-<!-- Recommended: A simple flowchart: First Scan → Measure Initial → [Wait] → Second Scan → Measure Final → Calculate Waste → Push to Firebase -->
-<!-- Tools: draw.io, Miro, or even hand-drawn and photographed -->
+<p align="center">
+  <img src="Image/Flowchart.png" alt="System Flowchart" width="600"/>
+</p>
 
 ---
 
 ## Firebase Data Structure
 
 ### Realtime Database — Waste Disposal Events
+
 ```
 /
 └── {residentUID}/
@@ -158,6 +158,7 @@ Residential buildings in Malaysia lack structured systems for organic waste trac
 ```
 
 ### Firestore — Gas Readings
+
 ```
 data/
 └── gas/
@@ -165,11 +166,12 @@ data/
     └── timestamp     : "2025-06-01T10:30:00Z"
 ```
 
-<!-- 📸 IMAGE SUGGESTION #5: Screenshot of Firebase Realtime Database structure -->
-<!-- Recommended: Export a screenshot of the actual tree from the Firebase console showing nested data under a resident UID -->
-
-<!-- 📸 IMAGE SUGGESTION #6: Screenshot of Firestore data/gas document -->
-<!-- Recommended: Screenshot of the Firestore console showing the gas_reading and timestamp fields -->
+<p align="center">
+  <img src="Image/Nested.png" alt="Firebase Realtime Database Structure" width="45%"/>
+  &nbsp;&nbsp;
+  <img src="Image/Data.png" alt="Firestore Gas Data" width="45%"/>
+</p>
+<p align="center"><em>Left: Realtime Database nested structure &nbsp;|&nbsp; Right: Firestore gas readings</em></p>
 
 ---
 
@@ -178,27 +180,33 @@ data/
 The Flutter app is for **building administrators only** and provides:
 
 ### Dashboard
+
 - 🟢 **Garbage Level Card** — live fill percentage from the latest RTDB entry, with color-coded progress bar (green / orange / red)
 - 💨 **Gas Level Card** — latest MQ-135 reading from Firestore with color-coded status
 - 🔄 Refresh button to pull the latest data on demand
 
-<!-- 📸 IMAGE SUGGESTION #7: Screenshot of the Dashboard screen -->
-<!-- Recommended: Screenshot of the Flutter app's main dashboard on a phone, showing the garbage level card, gas level card, and the two navigation buttons -->
+<p align="center">
+  <img src="Image/Dashboard.png" alt="App Dashboard" width="300"/>
+</p>
 
 ### Resident Waste Records
+
 Two tabs:
 - **Resident List** — aggregated view per resident showing total disposal count, total waste thrown (cm), and last disposal timestamp
 - **History** — chronological log of every individual disposal event across all residents
 
-<!-- 📸 IMAGE SUGGESTION #8: Screenshot of Resident Waste Records page (both tabs) -->
-<!-- Recommended: Side-by-side or two separate screenshots showing the Resident List tab and the History tab -->
+<p align="center">
+  <img src="Image/Records.png" alt="Resident Waste Records" width="300"/>
+</p>
 
 ### Residents with Warning
+
 - Lists residents whose **total waste thrown exceeds 30%** of their bin's initial height
 - Helps admins quickly identify overuse or improper disposal habits
 
-<!-- 📸 IMAGE SUGGESTION #9: Screenshot of Residents with Warning page -->
-<!-- Recommended: Screenshot showing a resident card flagged with total waste amount -->
+<p align="center">
+  <img src="Image/Warnings.png" alt="Residents with Warning" width="300"/>
+</p>
 
 ### App Flow
 
@@ -231,6 +239,18 @@ Splash Screen (loading bar)
 │   ├── testing.dart                  # Raw data viewer (waste + gas tabs)
 │   └── firebase_options.dart         # FlutterFire generated config
 │
+├── Image/
+│   ├── Prototype.jpg
+│   ├── Block diagram.png
+│   ├── Physical Wiring.jpg
+│   ├── Schematic diagram.png
+│   ├── Flowchart.png
+│   ├── Nested.png
+│   ├── Data.png
+│   ├── Dashboard.png
+│   ├── Records.png
+│   └── Warnings.png
+│
 └── README.md
 ```
 
@@ -239,6 +259,7 @@ Splash Screen (loading bar)
 ## Getting Started
 
 ### Hardware Setup
+
 1. Wire the **PN532 RFID module** to ESP32 via I2C (SDA → GPIO 22, SCL → GPIO 21)
 2. Connect the **Grove Ultrasonic Sensor** to GPIO 32
 3. Connect the **MQ-135 Gas Sensor** analog output to GPIO 36
@@ -251,6 +272,7 @@ Splash Screen (loading bar)
 > ```
 
 ### Flutter App Setup
+
 1. Install [Flutter SDK](https://flutter.dev/docs/get-started/install)
 2. Clone this repository and navigate to the `flutter_app/` folder
 3. Run `flutter pub get` to install dependencies
@@ -265,6 +287,7 @@ Splash Screen (loading bar)
    ```
 
 ### Required Flutter Dependencies
+
 ```yaml
 dependencies:
   firebase_core:
