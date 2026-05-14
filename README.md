@@ -2,7 +2,7 @@
 ### For Reducing Waste in Residential Buildings
 
 > A Final Year Project integrating **ESP32**, **RFID**, **ultrasonic & gas sensors**, **Firebase**, and a **Flutter mobile app** to automate waste monitoring and accountability in residential buildings.
-![Prototype](Image/Prorotype.jpg)
+![Prototype](Image/Prototype.jpg)
 ![Physical Wiring](Image/Physical%20Wiring.jpg)
 
 ---
