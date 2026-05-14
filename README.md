@@ -2,6 +2,8 @@
 ### For Reducing Waste in Residential Buildings
 
 > A Final Year Project integrating **ESP32**, **RFID**, **ultrasonic & gas sensors**, **Firebase**, and a **Flutter mobile app** to automate waste monitoring and accountability in residential buildings.
+![Prorotype](C:\Users\USER\Desktop\GitHub\FYP Project - IoT-Enabled Smart Waste Management System using RFID and Flutter application\Image\Prorotype.jpg)
+![Physical_Wiring](C:\Users\USER\Desktop\GitHub\FYP Project - IoT-Enabled Smart Waste Management System using RFID and Flutter application\Image\Physical Wiring.jpg)
 
 ---
 
